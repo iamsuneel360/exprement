@@ -53,14 +53,14 @@ export async function fetchUserAction() {
       };
     } else {
       return {
-        status: false,
+        success: false,
         message: "Error while fetch list user ! Please try again",
       };
     }
   } catch (error) {
     console.log(error);
     return {
-      status: false,
+      success: false,
       message: "Error in fetch user action ! Please try again",
     };
   }
@@ -75,12 +75,12 @@ export async function editUserAction(
   await connect();
 
   try {
-    const { firstName, lastName, email, address } = formData;
+    // const { firstName, lastName, email, address } = formData;
     const updatedUser = await User.findOneAndUpdate(
       {
         _id: currentUserId,
       },
-      { firstName, lastName, email, address },
+      { ...formData },
       { new: true }
     );
     if (updatedUser) {
@@ -91,15 +91,15 @@ export async function editUserAction(
       };
     } else {
       return {
-        status: false,
+        success: false,
         message: "Something went wrong in Updated action ! Please try again",
       };
     }
   } catch (error) {
     console.log(error);
     return {
-      status: false,
-      message: "Something went wrong in delete action ! Please try again",
+      success: false,
+      message: "Something went wrong in Edit action ! Please try again",
     };
   }
 }
@@ -117,14 +117,14 @@ export async function deleteUserAction(currentUserId, pathToRevalidate) {
       };
     } else {
       return {
-        status: false,
+        success: false,
         message: "Not able to perform delete operation ! Please try again",
       };
     }
   } catch (error) {
     console.log(error);
     return {
-      status: false,
+      success: false,
       message: "Something went wrong in delete action ! Please try again",
     };
   }

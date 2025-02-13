@@ -43,6 +43,7 @@ export default function AddNewUser() {
     console.log(result);
     setOpenPopup(false);
     setAddNewUserFormData(addNewUserFormInitialState);
+    setCurrentEditedID(null);
   }
 
   return (
